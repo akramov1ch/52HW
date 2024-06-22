@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "./gen";
+
+
+service SalesService {
+    rpc StreamSalesTransactions (stream SalesTransaction) returns (SalesSummary);
+}
+
+message SalesTransaction {
+    string transaction_id = 1;
+    string product_id = 2;
+    int32 quantity = 3;
+    float price = 4;
+    int64 timestamp = 5;
+}
+
+message SalesSummary {
+    float total_amount = 1;
+    int32 total_transactions = 2;
+}
